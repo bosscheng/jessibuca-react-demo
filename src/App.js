@@ -8,7 +8,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.jessibuca = null;
-        this.showOperateBtns = false;
+        this.showOperateBtns = true;
 
         this.$container = null;
         this.forceNoOffscreen = false;
