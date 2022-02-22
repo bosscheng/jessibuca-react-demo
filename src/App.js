@@ -24,22 +24,27 @@ class App extends React.Component {
     }
 
     create() {
+        var showOperateBtns = true; // 是否显示按钮
+        var forceNoOffscreen = true; //
         let $container = document.getElementById('container');
         this.jessibuca = new window.Jessibuca({
             container: $container,
             videoBuffer: 0.2, // 缓存时长
             isResize: false,
             text: "",
-            loadingText: "加载中",
-            debug: true,
-            showBandwidth: this.showOperateBtns, // 显示网速
+            loadingText: "",
+            useMSE: false,
+            debug: false,
+            hasAudio:true,
+            showBandwidth: showOperateBtns, // 显示网速
             operateBtns: {
-                fullscreen: this.showOperateBtns,
-                screenshot: this.showOperateBtns,
-                play: this.showOperateBtns,
-                audio: this.showOperateBtns,
+                fullscreen: showOperateBtns,
+                screenshot: showOperateBtns,
+                play: showOperateBtns,
+                audio: showOperateBtns,
+                recorder: showOperateBtns
             },
-            forceNoOffscreen: this.forceNoOffscreen,
+            forceNoOffscreen: forceNoOffscreen,
             isNotMute: false,
         });
     }
@@ -59,6 +64,13 @@ class App extends React.Component {
             this.setState({
                 isPlaying: false
             })
+        }
+    }
+
+    screenshot(){
+        if(this.jessibuca){
+            let file = this.jessibuca.screenshot('test','blob');
+            console.log(file);
         }
     }
 
@@ -95,6 +107,7 @@ class App extends React.Component {
                         this.state.isPlaying ?
                             <div className="input">
                                 <button id="destroy" onClick={this.destroy.bind(this)}>销毁</button>
+                                <button onClick={this.screenshot.bind(this)}>截图</button>
                             </div> : ''
                     }
                 </div>
