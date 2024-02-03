@@ -14,7 +14,7 @@ class App extends React.Component {
         this.forceNoOffscreen = false;
 
         this.state = {
-            playUrl: 'http://flv.bdplay.nodemedia.cn/live/bbb.flv',
+            playUrl: '',
             isPlaying: false
         }
     }
@@ -65,9 +65,9 @@ class App extends React.Component {
         }
     }
 
-    destroy() {
+    async destroy() {
         if (this.jessibuca) {
-            this.jessibuca.destroy();
+            await this.jessibuca.destroy();
             this.setState({
                 isPlaying: false
             })
