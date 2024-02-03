@@ -25,13 +25,16 @@ class App extends React.Component {
 
     create() {
         let $container = document.getElementById('container');
-        this.jessibuca = new window.Jessibuca({
+        this.jessibuca = new window.JessibucaPro({
             container: $container,
+            decoder:'/js/decoder-pro.js',
+            useMse:true,
             videoBuffer: 0.2, // 缓存时长
             isResize: false,
             text: "",
             loadingText: "加载中",
             debug: true,
+            debugLevel:'debug',
             showBandwidth: this.showOperateBtns, // 显示网速
             operateBtns: {
                 fullscreen: this.showOperateBtns,
